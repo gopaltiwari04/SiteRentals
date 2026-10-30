@@ -1,0 +1,519 @@
+/* ==========================================================================
+   SiteRentals - Heavy Equipment Rental Platform Styles
+   Theme: Architectural White, Construction Crimson Red (#DC2626), Dark Navy (#0F172A)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --color-red: #DC2626;
+  --color-red-light: #EF4444;
+  --color-red-dark: #991B1B;
+  --color-navy: #0F172A;
+  --color-navy-dark: #080D1A;
+  --color-navy-light: #1E293B;
+  --color-white: #FFFFFF;
+  --color-slate-bg: #F8FAFC;
+  --color-border-light: #E2E8F0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #FFFFFF;
+  color: #0F172A;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #FFFFFF;
+  color: #0F172A;
+}
+
+h1, h2, h3, .font-heading {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   1. INTRO SPLASH & LOGO ANIMATION (WHITE & RED)
+   ========================================================================== */
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(circle at center, #FFFFFF 0%, #F1F5F9 60%, #E2E8F0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s;
+  pointer-events: auto;
+}
+
+#intro-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.blueprint-grid-light {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(220, 38, 38, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220, 38, 38, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+  pointer-events: none;
+}
+
+#intro-logo-container {
+  position: fixed;
+  z-index: 10000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#intro-logo-container.fly-to-nav {
+  top: 18px;
+  left: 24px;
+  transform: translate(0, 0) scale(0.36);
+  transform-origin: top left;
+}
+
+@media (max-width: 768px) {
+  #intro-logo-container.fly-to-nav {
+    top: 14px;
+    left: 14px;
+    transform: translate(0, 0) scale(0.28);
+    transform-origin: top left;
+  }
+}
+
+.intro-glow-pulse {
+  animation: introRedPulse 2.4s infinite ease-in-out;
+}
+
+@keyframes introRedPulse {
+  0%, 100% {
+    filter: drop-shadow(0 4px 20px rgba(220, 38, 38, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 8px 45px rgba(220, 38, 38, 0.65));
+  }
+}
+
+.hazard-bar-red {
+  background: repeating-linear-gradient(
+    -45deg,
+    #DC2626,
+    #DC2626 12px,
+    #0F172A 12px,
+    #0F172A 24px
+  );
+}
+
+/* ==========================================================================
+   2. NAVBAR
+   ========================================================================== */
+.site-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 2px solid #F1F5F9;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08);
+  transition: all 0.4s ease;
+}
+
+#navbar-brand-logo {
+  transition: transform 0.2s ease;
+}
+
+#navbar-brand-logo:hover {
+  transform: scale(1.02);
+}
+
+/* ==========================================================================
+   3. FADING SCROLLABLE EQUIPMENT COLLAGE SHOWCASE
+   ========================================================================== */
+#fleet-collage-section {
+  position: relative;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  padding: 130px 20px 60px;
+  border-bottom: 1px solid #E2E8F0;
+  overflow: hidden;
+}
+
+.collage-slider-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 15px 10px 35px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #DC2626 #F1F5F9;
+}
+
+.collage-slider-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.collage-slider-track::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 9999px;
+}
+
+.collage-slider-track::-webkit-scrollbar-thumb {
+  background: #DC2626;
+  border-radius: 9999px;
+}
+
+.equipment-card {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  background: #FFFFFF;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.equipment-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px -5px rgba(220, 38, 38, 0.2);
+  border-color: #DC2626;
+}
+
+.equipment-card .card-img-wrap {
+  position: relative;
+  height: 210px;
+  width: 100%;
+  overflow: hidden;
+  background: #0F172A;
+}
+
+.equipment-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.equipment-card:hover img {
+  transform: scale(1.08);
+}
+
+.equipment-badge-red {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #DC2626;
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
+}
+
+.equipment-badge-navy {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   4. FULL-SCREEN SCROLL SHOWCASE (CATCHY ONE-LINERS)
+   ========================================================================== */
+.showcase-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.equipment-slide {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 60px;
+  overflow: hidden;
+}
+
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-size: cover;
+  background-position: center center;
+  transform: scale(1.03);
+  transition: transform 6s ease-out;
+}
+
+.equipment-slide.active .slide-bg {
+  transform: scale(1.1);
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.94) 85%);
+}
+
+.slide-overlay-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(180deg, rgba(15,23,42,0.85) 0%, transparent 40%, transparent 60%, rgba(15,23,42,0.96) 100%);
+}
+
+.slide-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1120px;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.equipment-slide.in-view .slide-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.catchy-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(2.3rem, 6.2vw, 5.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+}
+
+.catchy-headline span.highlight-red {
+  color: #EF4444;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EF4444 50%, #DC2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.slide-indicator-bar {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.slide-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.35);
+  transition: all 0.35s ease;
+  cursor: pointer;
+}
+
+.slide-dot.active {
+  height: 32px;
+  background: #DC2626;
+  box-shadow: 0 0 12px #DC2626;
+}
+
+/* ==========================================================================
+   5. QUOTATION FORM SECTION
+   ========================================================================== */
+#quote-section {
+  position: relative;
+  background: #F8FAFC;
+  padding: 100px 20px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.quote-card-white {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.12), 0 0 30px rgba(220, 38, 38, 0.06);
+  border-radius: 24px;
+}
+
+.equipment-chip {
+  transition: all 0.2s ease;
+  border: 1.5px solid #E2E8F0;
+  background: #F8FAFC;
+  color: #1E293B;
+  cursor: pointer;
+  user-select: none;
+}
+
+.equipment-chip:hover {
+  border-color: #DC2626;
+  background: #FEF2F2;
+  color: #DC2626;
+  transform: translateY(-2px);
+}
+
+.equipment-chip.selected {
+  background: #DC2626;
+  color: #FFFFFF;
+  font-weight: 700;
+  border-color: #DC2626;
+  box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
+}
+
+.city-pill {
+  transition: all 0.15s ease;
+  border: 1px solid #CBD5E1;
+  background: #FFFFFF;
+  color: #475569;
+  cursor: pointer;
+}
+
+.city-pill:hover, .city-pill.selected {
+  border-color: #DC2626;
+  background: #FEF2F2;
+  color: #DC2626;
+  font-weight: 600;
+}
+
+.custom-input {
+  background: #FFFFFF;
+  border: 1.5px solid #CBD5E1;
+  color: #0F172A;
+  transition: all 0.2s ease;
+}
+
+.custom-input:focus {
+  outline: none;
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.btn-red-glow {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 50%, #B91C1C 100%);
+  color: #FFFFFF;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35);
+}
+
+.btn-red-glow:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(220, 38, 38, 0.55);
+  background: linear-gradient(135deg, #F87171 0%, #EF4444 50%, #DC2626 100%);
+}
+
+.btn-red-glow:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* ==========================================================================
+   6. OFFICIAL QUOTATION TICKET PASS STYLES
+   ========================================================================== */
+#printable-ticket-card {
+  background: #FFFFFF;
+  border: 2px solid #E2E8F0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.15);
+  position: relative;
+}
+
+.ticket-header-strip {
+  background: #0F172A;
+  color: #FFFFFF;
+  padding: 20px 24px;
+  border-bottom: 4px solid #DC2626;
+}
+
+.ticket-queue-badge {
+  background: #FEF2F2;
+  border-bottom: 1px dashed #FECACA;
+  padding: 18px 24px;
+}
+
+.ticket-notch-left, .ticket-notch-right {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: #000000;
+  border-radius: 9999px;
+  top: 145px;
+  z-index: 10;
+}
+
+.ticket-notch-left {
+  left: -11px;
+}
+
+.ticket-notch-right {
+  right: -11px;
+}
+
+/* Modal Popup */
+#success-modal {
+  display: none;
+}
+
+#success-modal.active {
+  display: flex;
+}
+
+.pulse-green {
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulseGreen 1.8s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulseGreen {
+  to {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+}

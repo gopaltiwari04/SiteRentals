@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SiteRentals | Heavy Construction Equipment Rentals Across India</title>
+  <meta name="description" content="Discover, compare and rent heavy machinery across India: JCBs, excavators, all-terrain cranes, 16-wheel tippers, road rollers, and bulldozers at guaranteed best rental prices.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            red: {
+              500: '#EF4444',
+              600: '#DC2626',
+              700: '#B91C1C',
+              800: '#991B1B',
+            },
+            navy: {
+              800: '#1E293B',
+              900: '#0F172A',
+              950: '#080D1A',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Local jsPDF for Instant Vector PDF Ticket Downloads -->
+  <script src="js/jspdf.umd.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-white text-slate-900 selection:bg-red-600 selection:text-white">
+
+  <!-- ========================================================================
+       1. INTRO SPLASH & LOGO ANIMATION (WHITE & RED)
+       ======================================================================== -->
+  <div id="intro-screen">
+    <div class="blueprint-grid-light"></div>
+
+    <button id="skip-intro-btn" class="absolute top-6 right-6 px-4 py-1.5 text-xs font-bold tracking-wider uppercase text-slate-600 hover:text-red-600 border border-slate-300 rounded-full transition-all bg-white/90 backdrop-blur-md shadow-sm z-50">
+      Skip Intro ➔
+    </button>
+  </div>
+
+  <!-- Big Logo element that smoothly flies to navbar -->
+  <div id="intro-logo-container">
+    <div class="intro-glow-pulse flex flex-col items-center">
+      <img src="assets/logo.svg" alt="SiteRentals Logo" class="w-[320px] sm:w-[420px] md:w-[480px] drop-shadow-xl">
+      <div class="mt-4 px-4 py-1 bg-red-50 border border-red-300 rounded-full text-[11px] md:text-xs tracking-[0.25em] text-red-600 font-extrabold uppercase shadow-sm">
+        ⚡ India's Heavy Equipment Rental Marketplace
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       2. TOP NAVBAR (NO PHONE NUMBER SHOWN - ONLY WHATSAPP)
+       ======================================================================== -->
+  <header id="main-navbar" class="site-navbar opacity-0 -translate-y-4 transition-all duration-700">
+    <!-- Top Navy Status Strip -->
+    <div class="w-full bg-[#0F172A] text-white py-1.5 px-4 text-[11px] font-medium border-b border-slate-800">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center space-x-2.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-green inline-block"></span>
+          <span class="text-slate-300">Live Available Fleet:</span>
+          <span class="font-bold text-red-400"><span id="live-machine-count">2,845</span> Heavy Machines Ready</span>
+          <span class="hidden sm:inline text-slate-600">•</span>
+          <span class="hidden sm:inline text-slate-300">Pan-India Mobilization across 45+ Cities</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-5 text-slate-300">
+          <span>⏱️ Rapid Quotation: <strong class="text-white">Under 15 Mins</strong></span>
+          <span>🛡️ <strong class="text-white">100% Inspected</strong> Fleet</span>
+          <a href="https://wa.me/917011775286" target="_blank" class="hover:text-red-400 transition-colors flex items-center space-x-1.5">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span>Fleet Desk: <strong class="text-white">WhatsApp Active</strong></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+      
+      <!-- Permanent Brand Logo Container in Navbar -->
+      <a href="#" id="navbar-brand-logo" class="flex items-center flex-shrink-0 z-20">
+        <img src="assets/logo.svg" alt="SiteRentals Brand" class="h-9 sm:h-11 w-auto object-contain">
+      </a>
+
+      <!-- Quick Nav Links -->
+      <nav class="hidden xl:flex items-center space-x-6 text-xs font-bold tracking-wide uppercase text-slate-700">
+        <a href="#fleet-collage-section" class="hover:text-red-600 transition-colors flex items-center space-x-1">
+          <i data-lucide="layers" class="w-3.5 h-3.5 text-red-600"></i>
+          <span>Machinery Fleet</span>
+        </a>
+        <a href="#slide-0" class="hover:text-red-600 transition-colors">JCBs & Excavators</a>
+        <a href="#slide-1" class="hover:text-red-600 transition-colors">All-Terrain Cranes</a>
+        <a href="#slide-2" class="hover:text-red-600 transition-colors">16-Wheel Tippers</a>
+        <a href="#slide-3" class="hover:text-red-600 transition-colors">Road Rollers</a>
+        <a href="#slide-4" class="hover:text-red-600 transition-colors">Bulldozers</a>
+      </nav>
+
+      <!-- Action Buttons Group (Number removed - only WhatsApp text) -->
+      <div class="flex items-center space-x-3 flex-shrink-0">
+        <!-- WhatsApp Header Button -->
+        <a href="https://wa.me/917011775286?text=Hello%20SiteRentals,%20I%20need%20a%20quotation%20for%20heavy%20machinery." target="_blank" class="inline-flex items-center space-x-2 px-4 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition-all shadow-sm">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>WhatsApp</span>
+        </a>
+
+        <!-- Get Free Quote Button -->
+        <a href="#quote-section" class="btn-red-glow px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs md:text-sm font-extrabold uppercase tracking-wider flex items-center space-x-2 shadow-md whitespace-nowrap">
+          <span>Get Free Quote</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       3. FADING SCROLLABLE EQUIPMENT COLLAGE SHOWCASE
+       ======================================================================== -->
+  <section id="fleet-collage-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header with Catchy One-Liner -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200">
+        <div>
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-100 text-red-600 text-xs font-black uppercase tracking-widest mb-2">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            <span>Verified Machinery Ready To Mobilize</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-950 uppercase tracking-tight">
+            PICK YOUR MACHINE. <span class="text-red-600">DELIVERED TO YOUR SITE TODAY.</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl font-medium">
+            Explore our pan-India equipment collage. Click any machine to lock in direct supplier rates with certified operators.
+          </p>
+        </div>
+
+        <!-- Scroll Slider Controls -->
+        <div class="flex items-center space-x-2 mt-4 md:mt-0">
+          <button id="collage-prev-btn" class="w-10 h-10 rounded-full border border-slate-300 bg-white hover:bg-red-50 hover:border-red-500 text-slate-700 hover:text-red-600 flex items-center justify-center transition-all shadow-sm" aria-label="Previous equipment">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <button id="collage-next-btn" class="w-10 h-10 rounded-full border border-slate-300 bg-white hover:bg-red-50 hover:border-red-500 text-slate-700 hover:text-red-600 flex items-center justify-center transition-all shadow-sm" aria-label="Next equipment">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Collage Track with Authentic Machinery Images -->
+      <div id="collage-track" class="collage-slider-track">
+
+        <!-- 1. ALL-TERRAIN MOBILE CRANE -->
+        <div class="equipment-card cursor-pointer group" data-equipment="Heavy Mobile Crane (25T-250T)">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/all_terrain_crane.jpg" alt="All-Terrain Mobile Crane" loading="lazy">
+            <span class="equipment-badge-red">ALL-TERRAIN CRANE</span>
+            <span class="equipment-badge-navy">25T to 250T</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">All-Terrain Mobile Crane</h3>
+              <p class="text-xs text-slate-500 mt-1">Multi-axle carrier telescopic cranes for heavy steel girders, bridge erection & high-rise lifts.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">Certified Riggers & Operators</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. CRAWLER EXCAVATOR -->
+        <div class="equipment-card cursor-pointer group" data-equipment="20T-40T Excavator">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/crawler_excavator.jpg" alt="Crawler Excavator" loading="lazy">
+            <span class="equipment-badge-red">CRAWLER EXCAVATOR</span>
+            <span class="equipment-badge-navy">20T - 40T Tracks</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">Heavy Crawler Excavator</h3>
+              <p class="text-xs text-slate-500 mt-1">CAT & Tata Hitachi tracked excavators with heavy rock breakers for deep foundation & trenching.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">Rock Breaker Ready</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. JCB 3DX BACKHOE LOADER -->
+        <div class="equipment-card cursor-pointer group" data-equipment="JCB 3DX Backhoe">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/jcb_backhoe.jpg" alt="JCB 3DX Backhoe Loader" loading="lazy">
+            <span class="equipment-badge-red">JCB 3DX BACKHOE</span>
+            <span class="equipment-badge-navy">4x4 Heavy Spec</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">JCB 3DX Backhoe Loader</h3>
+              <p class="text-xs text-slate-500 mt-1">India's most trusted backhoe loader for utility excavation, road building & site material handling.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">₹1,150/hr onwards</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. 16-WHEEL TIPPER TRUCK -->
+        <div class="equipment-card cursor-pointer group" data-equipment="16-Wheel Tipper / Dumper Truck">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/tipper_truck.jpg" alt="16-Wheel Heavy Tipper Truck" loading="lazy">
+            <span class="equipment-badge-red">16-WHEEL TRUCK</span>
+            <span class="equipment-badge-navy">32T Payload</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">16-Wheel Heavy Tipper</h3>
+              <p class="text-xs text-slate-500 mt-1">Multi-axle heavy haulage dumpers for bulk excavation disposal, sand, and stone aggregate transport.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">Trip & Monthly Contracts</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. CRAWLER BULLDOZER -->
+        <div class="equipment-card cursor-pointer group" data-equipment="Crawler Bulldozer">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/bulldozer.jpg" alt="Crawler Bulldozer" loading="lazy">
+            <span class="equipment-badge-red">BULLDOZER D8/D6</span>
+            <span class="equipment-badge-navy">380 HP Heavy Push</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">Heavy Crawler Bulldozer</h3>
+              <p class="text-xs text-slate-500 mt-1">High-output bulldozers for rugged land clearing, earth leveling & heavy overburden stripping.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">₹1,950/hr onwards</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. VIBRATORY ROAD ROLLER & COMPACTOR -->
+        <div class="equipment-card cursor-pointer group" data-equipment="Vibratory Road Roller">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/road_roller.jpg" alt="Road Roller Compactor" loading="lazy">
+            <span class="equipment-badge-red">ROAD ROLLER</span>
+            <span class="equipment-badge-navy">11T - 14T Drum</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">Vibratory Soil Compactor</h3>
+              <p class="text-xs text-slate-500 mt-1">Single-drum and tandem rollers for expressway sub-base compaction and asphalt paving.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">Instant Mobilization</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. CONCRETE BOOM PUMP TRUCK -->
+        <div class="equipment-card cursor-pointer group" data-equipment="Concrete Boom Pump">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/concrete_pump.jpg" alt="Concrete Boom Pump Truck" loading="lazy">
+            <span class="equipment-badge-red">CONCRETE BOOM PUMP</span>
+            <span class="equipment-badge-navy">36m - 43m Boom</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">High-Reach Boom Pump</h3>
+              <p class="text-xs text-slate-500 mt-1">Truck-mounted concrete boom pumps for high-volume foundation pours and multi-story slabs.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">160 m³/hr Output</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. TRANSIT CONCRETE MIXER TRUCK -->
+        <div class="equipment-card cursor-pointer group" data-equipment="Transit Mixer Truck">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/transit_mixer.jpg" alt="Transit Concrete Mixer Truck" loading="lazy">
+            <span class="equipment-badge-red">TRANSIT MIXER</span>
+            <span class="equipment-badge-navy">7 - 9 m³ Drum</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">Transit Concrete Mixer</h3>
+              <p class="text-xs text-slate-500 mt-1">Revolving drum batching trucks for continuous on-time ready-mix delivery to your job site.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">Fleet On Demand</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. HEAVY WHEEL LOADER -->
+        <div class="equipment-card cursor-pointer group" data-equipment="Wheel Loader / Motor Grader">
+          <div class="card-img-wrap">
+            <img src="assets/machinery/wheel_loader.jpg" alt="Heavy Wheel Loader" loading="lazy">
+            <span class="equipment-badge-red">WHEEL LOADER</span>
+            <span class="equipment-badge-navy">3.2 m³ Bucket</span>
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 group-hover:text-red-600 transition-colors uppercase">Articulated Wheel Loader</h3>
+              <p class="text-xs text-slate-500 mt-1">Heavy front loaders for rapid gravel, crushed stone, sand loading and plant stockpiling.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">Monthly Contract</span>
+              <span class="text-red-600 font-bold group-hover:translate-x-1 transition-transform inline-flex items-center">Rent Now ➔</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. FLOATING SLIDE INDICATOR (RIGHT SIDE)
+       ======================================================================== -->
+  <aside class="slide-indicator-bar hidden lg:flex" aria-label="Machinery Navigation">
+    <div class="slide-dot active" data-target="0" title="JCBs & Excavators"></div>
+    <div class="slide-dot" data-target="1" title="All-Terrain Cranes"></div>
+    <div class="slide-dot" data-target="2" title="16-Wheel Tippers"></div>
+    <div class="slide-dot" data-target="3" title="Road Rollers"></div>
+    <div class="slide-dot" data-target="4" title="Bulldozers"></div>
+    <div class="slide-dot" data-target="5" title="Concrete Boom Pumps"></div>
+  </aside>
+
+  <!-- ========================================================================
+       5. SCROLL SHOWCASE (CHANGING MACHINERY & CATCHY ONE-LINERS)
+       ======================================================================== -->
+  <main class="showcase-wrapper">
+
+    <!-- SLIDE 0: CRAWLER EXCAVATORS & JCB 3DX -->
+    <section id="slide-0" class="equipment-slide in-view active" data-index="0">
+      <div class="slide-bg" style="background-image: url('assets/machinery/crawler_excavator.jpg');"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-overlay-vignette"></div>
+
+      <div class="slide-content">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-600/90 text-white mb-6 text-xs md:text-sm font-extrabold uppercase tracking-widest shadow-lg">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+          <span>JCB 3DX & 20T-40T Crawler Excavators</span>
+        </div>
+
+        <h1 class="catchy-headline mb-4">
+          BEST PRICE ON THE <br><span class="highlight-red">MARKETPLACE.</span>
+        </h1>
+        <p class="text-sm md:text-lg text-slate-200 font-bold uppercase tracking-wider mb-8">
+          ⚡ Beat Any Verified Competitor Quote By 5% — Guaranteed.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8 text-xs md:text-sm font-semibold text-slate-200">
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Direct Fleet Owner Rates</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Hourly, Daily & Monthly Hire</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Instant Site Mobilization</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button class="quick-quote-trigger btn-red-glow px-8 py-4 rounded-xl text-sm md:text-base font-black tracking-wider uppercase flex items-center space-x-3 w-full sm:w-auto justify-center" data-equipment="20T-40T Excavator">
+            <span>Rent Crawler Excavator / JCB</span>
+            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+          </button>
+          <a href="#slide-1" class="px-6 py-4 rounded-xl text-xs md:text-sm font-bold tracking-wider uppercase text-slate-200 hover:text-white bg-slate-900/70 hover:bg-slate-800/90 border border-slate-600/60 backdrop-blur-md transition-all flex items-center space-x-2">
+            <span>Next Machine</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 1: ALL-TERRAIN HEAVY MOBILE CRANES -->
+    <section id="slide-1" class="equipment-slide" data-index="1">
+      <div class="slide-bg" style="background-image: url('assets/machinery/all_terrain_crane.jpg');"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-overlay-vignette"></div>
+
+      <div class="slide-content">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-600/90 text-white mb-6 text-xs md:text-sm font-extrabold uppercase tracking-widest shadow-lg">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span>All-Terrain Mobile Cranes (25T - 250T)</span>
+        </div>
+
+        <h2 class="catchy-headline mb-4">
+          A PRICE YOU DECIDE. <br><span class="highlight-red">DELIVERED AT YOUR CONVENIENCE.</span>
+        </h2>
+        <p class="text-sm md:text-lg text-slate-200 font-bold uppercase tracking-wider mb-8">
+          🏗️ 25T to 250T Heavy Lifts Engineered with Certified Riggers.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8 text-xs md:text-sm font-semibold text-slate-200">
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Certified Operators & Riggers</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Heavy Lift Engineering Permits</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Pan-India Site Delivery</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button class="quick-quote-trigger btn-red-glow px-8 py-4 rounded-xl text-sm md:text-base font-black tracking-wider uppercase flex items-center space-x-3 w-full sm:w-auto justify-center" data-equipment="Heavy Mobile Crane (25T-250T)">
+            <span>Get Crane Quotation</span>
+            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+          </button>
+          <a href="#slide-2" class="px-6 py-4 rounded-xl text-xs md:text-sm font-bold tracking-wider uppercase text-slate-200 hover:text-white bg-slate-900/70 hover:bg-slate-800/90 border border-slate-600/60 backdrop-blur-md transition-all flex items-center space-x-2">
+            <span>Next Machine</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: 16-WHEEL TIPPER TRUCKS & BULK HAULAGE -->
+    <section id="slide-2" class="equipment-slide" data-index="2">
+      <div class="slide-bg" style="background-image: url('assets/machinery/tipper_truck.jpg');"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-overlay-vignette"></div>
+
+      <div class="slide-content">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-600/90 text-white mb-6 text-xs md:text-sm font-extrabold uppercase tracking-widest shadow-lg">
+          <i data-lucide="truck" class="w-4 h-4"></i>
+          <span>16-Wheel Heavy Tipper & Bulk Haulage Fleets</span>
+        </div>
+
+        <h2 class="catchy-headline mb-4">
+          HEAVY HAULAGE. <br><span class="highlight-red">UNSTOPPABLE PROJECT MOMENTUM.</span>
+        </h2>
+        <p class="text-sm md:text-lg text-slate-200 font-bold uppercase tracking-wider mb-8">
+          🚛 Bulk Muck Disposal & Aggregate Supply Without Idle Delays.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8 text-xs md:text-sm font-semibold text-slate-200">
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ 32-Ton Heavy Payload Tippers</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ 24/7 Dedicated Shift Drivers</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Per-Trip & Monthly Contracts</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button class="quick-quote-trigger btn-red-glow px-8 py-4 rounded-xl text-sm md:text-base font-black tracking-wider uppercase flex items-center space-x-3 w-full sm:w-auto justify-center" data-equipment="16-Wheel Tipper / Dumper Truck">
+            <span>Rent 16-Wheel Tippers</span>
+            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+          </button>
+          <a href="#slide-3" class="px-6 py-4 rounded-xl text-xs md:text-sm font-bold tracking-wider uppercase text-slate-200 hover:text-white bg-slate-900/70 hover:bg-slate-800/90 border border-slate-600/60 backdrop-blur-md transition-all flex items-center space-x-2">
+            <span>Next Machine</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: ROAD ROLLERS & SOIL COMPACTORS -->
+    <section id="slide-3" class="equipment-slide" data-index="3">
+      <div class="slide-bg" style="background-image: url('assets/machinery/road_roller.jpg');"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-overlay-vignette"></div>
+
+      <div class="slide-content">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-600/90 text-white mb-6 text-xs md:text-sm font-extrabold uppercase tracking-widest shadow-lg">
+          <i data-lucide="gauge" class="w-4 h-4"></i>
+          <span>Vibratory Soil Compactors, Tandem Rollers & Graders</span>
+        </div>
+
+        <h2 class="catchy-headline mb-4">
+          ZERO DOWNTIME. <br><span class="highlight-red">MAXIMUM PROJECT SPEED.</span>
+        </h2>
+        <p class="text-sm md:text-lg text-slate-200 font-bold uppercase tracking-wider mb-8">
+          🛡️ 4-Hour Machine Replacement Guarantee Across All Sites in India.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8 text-xs md:text-sm font-semibold text-slate-200">
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ 100% Inspected Machinery</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ 4-Hour Replacement Clause</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ GPS Telematics Fleet</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button class="quick-quote-trigger btn-red-glow px-8 py-4 rounded-xl text-sm md:text-base font-black tracking-wider uppercase flex items-center space-x-3 w-full sm:w-auto justify-center" data-equipment="Vibratory Road Roller">
+            <span>Rent Road Roller</span>
+            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+          </button>
+          <a href="#slide-4" class="px-6 py-4 rounded-xl text-xs md:text-sm font-bold tracking-wider uppercase text-slate-200 hover:text-white bg-slate-900/70 hover:bg-slate-800/90 border border-slate-600/60 backdrop-blur-md transition-all flex items-center space-x-2">
+            <span>Next Machine</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: BULLDOZERS & EARTHMOVERS -->
+    <section id="slide-4" class="equipment-slide" data-index="4">
+      <div class="slide-bg" style="background-image: url('assets/machinery/bulldozer.jpg');"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-overlay-vignette"></div>
+
+      <div class="slide-content">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-600/90 text-white mb-6 text-xs md:text-sm font-extrabold uppercase tracking-widest shadow-lg">
+          <i data-lucide="mountain" class="w-4 h-4"></i>
+          <span>Heavy Crawler Dozers & Earthmovers</span>
+        </div>
+
+        <h2 class="catchy-headline mb-4">
+          MOVE MOUNTAINS <br><span class="highlight-red">WITHOUT OWNING THEM.</span>
+        </h2>
+        <p class="text-sm md:text-lg text-slate-200 font-bold uppercase tracking-wider mb-8">
+          💰 Zero Capital Expense. 100% Tax-Deductible Operational Rental.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8 text-xs md:text-sm font-semibold text-slate-200">
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Zero Heavy Capital Locked</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ CAT & Komatsu Spec Fleets</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Verified Maintenance Logs</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button class="quick-quote-trigger btn-red-glow px-8 py-4 rounded-xl text-sm md:text-base font-black tracking-wider uppercase flex items-center space-x-3 w-full sm:w-auto justify-center" data-equipment="Crawler Bulldozer">
+            <span>Rent Bulldozer</span>
+            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+          </button>
+          <a href="#slide-5" class="px-6 py-4 rounded-xl text-xs md:text-sm font-bold tracking-wider uppercase text-slate-200 hover:text-white bg-slate-900/70 hover:bg-slate-800/90 border border-slate-600/60 backdrop-blur-md transition-all flex items-center space-x-2">
+            <span>Next Machine</span>
+            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: CONCRETE PUMPS & MIXERS -->
+    <section id="slide-5" class="equipment-slide" data-index="5">
+      <div class="slide-bg" style="background-image: url('assets/machinery/concrete_pump.jpg');"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-overlay-vignette"></div>
+
+      <div class="slide-content">
+        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-red-600/90 text-white mb-6 text-xs md:text-sm font-extrabold uppercase tracking-widest shadow-lg">
+          <i data-lucide="check-circle" class="w-4 h-4"></i>
+          <span>High-Reach Concrete Boom Pumps & Transit Mixers</span>
+        </div>
+
+        <h2 class="catchy-headline mb-4">
+          REGISTER YOUR FREE <br><span class="highlight-red">QUOTATION TODAY.</span>
+        </h2>
+        <p class="text-sm md:text-lg text-slate-200 font-bold uppercase tracking-wider mb-8">
+          ⏱️ 3 Verified Supplier Bids In Your WhatsApp Within 15 Minutes.
+        </p>
+
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8 text-xs md:text-sm font-semibold text-slate-200">
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Transparent Pricing Guarantee</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Delivered to Your Project Site</span>
+          <span class="px-4 py-2 rounded-lg bg-black/60 border border-slate-700/80 backdrop-blur-md">✔ Pan-India Coverage in 45+ Cities</span>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#quote-section" class="btn-red-glow px-8 py-4 rounded-xl text-sm md:text-base font-black tracking-wider uppercase flex items-center space-x-3 w-full sm:w-auto justify-center">
+            <span>Proceed To Query Form</span>
+            <i data-lucide="arrow-down" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       6. QUOTATION QUERY FORM SECTION
+       ======================================================================== -->
+  <section id="quote-section" class="py-20 px-4 sm:px-6 lg:px-8 relative bg-slate-50">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Section Header -->
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-red-100 text-red-600 text-xs font-black uppercase tracking-widest mb-3">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          <span>Instant Contractor Quotation Portal</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase text-slate-950 tracking-tight">
+          Register Your <span class="text-red-600">Free Quotation</span>
+        </h2>
+        <p class="mt-2 text-sm md:text-base text-slate-600 max-w-xl mx-auto font-medium">
+          Fill your equipment requirement below. You will receive an official **Quotation Ticket Pass** with your queue number and a downloadable PDF copy.
+        </p>
+      </div>
+
+      <!-- Main Quotation Card -->
+      <div class="quote-card-white p-6 sm:p-10 relative overflow-hidden bg-white">
+        <div class="hazard-bar-red h-2 absolute top-0 left-0 right-0"></div>
+
+        <form id="quotation-form" class="space-y-8 mt-2">
+
+          <!-- 1. Equipment Selector (Interactive Chips) -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest text-slate-700 mb-3 flex items-center justify-between">
+              <span>Select Equipment Needed (Click to select multiple)</span>
+              <span id="selected-equipments-text" class="text-red-600 font-bold text-xs">JCB 3DX Backhoe</span>
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div class="equipment-chip selected p-3 rounded-xl text-center text-xs font-semibold" data-val="JCB 3DX Backhoe">
+                🚜 JCB 3DX Backhoe
+              </div>
+              <div class="equipment-chip p-3 rounded-xl text-center text-xs font-semibold" data-val="20T-40T Excavator">
+                ⛏️ 20T-40T Excavator
+              </div>
+              <div class="equipment-chip p-3 rounded-xl text-center text-xs font-semibold" data-val="Heavy Mobile Crane (25T-250T)">
+                🏗️ Heavy Crane (25T-250T)
+              </div>
+              <div class="equipment-chip p-3 rounded-xl text-center text-xs font-semibold" data-val="16-Wheel Tipper / Dumper Truck">
+                🚛 16-Wheel Tipper Truck
+              </div>
+              <div class="equipment-chip p-3 rounded-xl text-center text-xs font-semibold" data-val="Crawler Bulldozer">
+                🚜 Crawler Bulldozer
+              </div>
+              <div class="equipment-chip p-3 rounded-xl text-center text-xs font-semibold" data-val="Vibratory Road Roller">
+                🛣️ Vibratory Road Roller
+              </div>
+              <div class="equipment-chip p-3 rounded-xl text-center text-xs font-semibold" data-val="Concrete Boom Pump">
+                🏢 Concrete Boom Pump
+              </div>
+              <div class="equipment-chip p-3 rounded-xl text-center text-xs font-semibold" data-val="Transit Mixer Truck">
+                🚛 Transit Mixer Truck
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Contractor Contact Details -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label for="input-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                Contractor / Company Name <span class="text-red-600">*</span>
+              </label>
+              <input type="text" id="input-name" name="name" required placeholder="e.g. Ramesh Kumar / Infra BuildTech" class="w-full px-4 py-3 rounded-xl custom-input text-sm">
+            </div>
+
+            <div>
+              <label for="input-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                Phone Number / WhatsApp <span class="text-red-600">*</span>
+              </label>
+              <div class="relative">
+                <span class="absolute left-4 top-3 text-slate-500 font-bold text-sm">+91</span>
+                <input type="tel" id="input-phone" name="phone" required placeholder="98765 43210" class="w-full pl-14 pr-4 py-3 rounded-xl custom-input text-sm">
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Email (with notice that ticket PDF will be sent here) and City -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label for="input-email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 flex items-center justify-between">
+                <span>Customer Email Address</span>
+                <span class="text-red-600 text-[10px] font-bold">Ticket sent here</span>
+              </label>
+              <input type="email" id="input-email" name="email" required placeholder="your.email@company.com" class="w-full px-4 py-3 rounded-xl custom-input text-sm">
+              <p class="text-[11px] text-slate-400 mt-1">A digital copy of your quotation pass will be emailed to this ID.</p>
+            </div>
+
+            <div>
+              <label for="input-city" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                Project City / Site Location <span class="text-red-600">*</span>
+              </label>
+              <input type="text" id="input-city" name="city" required value="Delhi NCR" placeholder="e.g. Noida, Mumbai, Bengaluru..." class="w-full px-4 py-3 rounded-xl custom-input text-sm">
+              <div class="flex flex-wrap gap-1.5 mt-2">
+                <span class="city-pill selected px-2.5 py-0.5 rounded text-[11px]" data-city="Delhi NCR">Delhi NCR</span>
+                <span class="city-pill px-2.5 py-0.5 rounded text-[11px]" data-city="Mumbai">Mumbai</span>
+                <span class="city-pill px-2.5 py-0.5 rounded text-[11px]" data-city="Bengaluru">Bengaluru</span>
+                <span class="city-pill px-2.5 py-0.5 rounded text-[11px]" data-city="Hyderabad">Hyderabad</span>
+                <span class="city-pill px-2.5 py-0.5 rounded text-[11px]" data-city="Pune">Pune</span>
+                <span class="city-pill px-2.5 py-0.5 rounded text-[11px]" data-city="Ahmedabad">Ahmedabad</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Duration and Start Date -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label for="input-duration" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                Expected Rental Duration
+              </label>
+              <select id="input-duration" name="duration" class="w-full px-4 py-3 rounded-xl custom-input text-sm bg-white">
+                <option value="1 to 3 Days (Short Term)">1 to 3 Days (Short Term)</option>
+                <option value="1 to 2 Weeks">1 to 2 Weeks</option>
+                <option value="1 Month" selected>1 Month</option>
+                <option value="3 Months to 6 Months">3 Months to 6 Months</option>
+                <option value="Long Term Project Basis (6+ Months)">Long Term Project Basis (6+ Months)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="input-date" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                Required Mobilization Date
+              </label>
+              <input type="date" id="input-date" name="startDate" class="w-full px-4 py-3 rounded-xl custom-input text-sm bg-white">
+            </div>
+          </div>
+
+          <!-- 5. Additional Notes -->
+          <div>
+            <label for="input-notes" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+              Specific Project Requirements / Site Conditions (Optional)
+            </label>
+            <textarea id="input-notes" name="notes" rows="2" placeholder="e.g. Fuel inclusive/exclusive, operator required, basement excavation depth..." class="w-full px-4 py-3 rounded-xl custom-input text-sm resize-none"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button type="submit" id="submit-quote-btn" class="w-full btn-red-glow py-4 px-6 rounded-xl text-base font-black tracking-wider uppercase flex items-center justify-center space-x-3 cursor-pointer">
+              <span id="submit-btn-text">GET FREE QUOTATION NOW ➔</span>
+              <svg id="submit-btn-spinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+            </button>
+            <p class="text-center text-xs text-slate-500 mt-3 flex items-center justify-center space-x-2">
+              <i data-lucide="lock" class="w-3.5 h-3.5 text-red-600"></i>
+              <span>Instant Queue Ticket Pass issued immediately with PDF download & WhatsApp routing.</span>
+            </p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. COMPREHENSIVE, CONTENT-RICH FOOTER (NO PHONE NUMBER SHOWN)
+       ======================================================================== -->
+  <footer class="bg-[#0A1128] text-white pt-16 pb-12 border-t-4 border-red-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Fleet Owner Callout Banner -->
+      <div class="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl p-6 sm:p-8 mb-14 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="px-3 py-1 bg-black/30 rounded-full text-xs font-black uppercase tracking-wider text-white">FOR EQUIPMENT OWNERS</span>
+          <h3 class="text-2xl sm:text-3xl font-black uppercase text-white mt-2">Own Heavy Machinery? List Your Fleet With SiteRentals</h3>
+          <p class="text-xs sm:text-sm text-red-100 mt-1 max-w-2xl font-medium">
+            Connect with verified Tier-1 contractors, EPC builders, and government infrastructure projects across India. Earn guaranteed monthly rental income with prompt payments.
+          </p>
+        </div>
+        <a href="#quote-section" class="px-6 py-3.5 rounded-xl bg-white text-slate-900 hover:bg-slate-100 font-extrabold text-xs uppercase tracking-wider whitespace-nowrap shadow-md transition-all">
+          List My Machinery ➔
+        </a>
+      </div>
+
+      <!-- Main 4-Column Footer Content (Zero Phone Digits Visible) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+        
+        <!-- Column 1: Brand & Corporate Desk -->
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <img src="assets/logo-icon.svg" alt="SiteRentals Emblem" class="w-10 h-10">
+            <div>
+              <span class="font-black text-xl tracking-wider text-white">SITE<span class="text-red-500">RENTALS</span></span>
+              <p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Equipment Rentals • Pan India</p>
+            </div>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            SiteRentals is India's leading digital equipment rental marketplace, uniting construction contractors, infrastructure giants, and verified machinery owners on one transparent platform.
+          </p>
+          <div class="space-y-2 pt-2 text-xs text-slate-300">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="phone" class="w-4 h-4 text-red-500"></i>
+              <span>National Rental Desk: <strong class="text-white">Calling & WhatsApp Support</strong></span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+              <a href="https://wa.me/917011775286" target="_blank" class="hover:text-emerald-400 transition-colors">
+                24/7 Fleet Dispatch Desk: <strong class="text-white">Instant WhatsApp Connect</strong>
+              </a>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-red-500"></i>
+              <span>45+ Mobilization Hubs Across India</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Equipment Fleet Categories -->
+        <div>
+          <h4 class="font-extrabold text-sm uppercase tracking-wider text-white mb-4 pb-1 border-b border-red-600/60 inline-block">
+            Heavy Machinery Fleet
+          </h4>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li><a href="#slide-0" class="hover:text-red-400 transition-colors">🚜 Hydraulic Crawler Excavators (20T - 40T)</a></li>
+            <li><a href="#slide-0" class="hover:text-red-400 transition-colors">🚜 JCB 3DX Backhoe Loaders</a></li>
+            <li><a href="#slide-1" class="hover:text-red-400 transition-colors">🏗️ All-Terrain Heavy Mobile Cranes (25T - 250T)</a></li>
+            <li><a href="#slide-2" class="hover:text-red-400 transition-colors">🚛 16-Wheel Heavy Tipper Trucks</a></li>
+            <li><a href="#slide-4" class="hover:text-red-400 transition-colors">🚜 Heavy Crawler Bulldozers (D8/D6)</a></li>
+            <li><a href="#slide-3" class="hover:text-red-400 transition-colors">🛣️ Vibratory Soil Compactors & Rollers</a></li>
+            <li><a href="#slide-5" class="hover:text-red-400 transition-colors">🏢 Concrete Boom Pumps (36m - 43m)</a></li>
+            <li><a href="#slide-5" class="hover:text-red-400 transition-colors">🚛 Ready-Mix Transit Mixer Trucks</a></li>
+            <li><a href="#fleet-collage-section" class="hover:text-red-400 transition-colors">⚙️ Articulated Wheel Front Loaders</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Major Mobilization Hubs -->
+        <div>
+          <h4 class="font-extrabold text-sm uppercase tracking-wider text-white mb-4 pb-1 border-b border-red-600/60 inline-block">
+            Pan-India Deployment Hubs
+          </h4>
+          <ul class="space-y-2 text-xs text-slate-300">
+            <li><span class="text-white font-semibold">Delhi NCR:</span> Noida, Gurugram, Greater Noida, Ghaziabad</li>
+            <li><span class="text-white font-semibold">Mumbai MMR:</span> Thane, Navi Mumbai, JNPT, Panvel</li>
+            <li><span class="text-white font-semibold">South Hubs:</span> Bengaluru, Hyderabad, Chennai</li>
+            <li><span class="text-white font-semibold">Western Hubs:</span> Pune, Ahmedabad, Surat, Vadodara</li>
+            <li><span class="text-white font-semibold">Central & East:</span> Kolkata, Lucknow, Jaipur, Indore</li>
+            <li class="pt-2 text-[11px] text-red-400 font-bold">📍 Express Mobilization to Highway & Metro Infrastructure Projects</li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contractor Guarantees & Solutions -->
+        <div>
+          <h4 class="font-extrabold text-sm uppercase tracking-wider text-white mb-4 pb-1 border-b border-red-600/60 inline-block">
+            Contractor Solutions & Trust
+          </h4>
+          <ul class="space-y-2.5 text-xs text-slate-300">
+            <li class="flex items-start space-x-2">
+              <i data-lucide="check" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i>
+              <span><strong>100% Inspected Machinery:</strong> Multi-point mechanical audit before site dispatch.</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <i data-lucide="check" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i>
+              <span><strong>4-Hour Replacement Clause:</strong> Standby machine dispatch on mechanical breakdowns.</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <i data-lucide="check" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i>
+              <span><strong>Certified Operators:</strong> Operators with safety compliance and valid heavy machinery licenses.</span>
+            </li>
+            <li class="flex items-start space-x-2">
+              <i data-lucide="check" class="w-4 h-4 text-red-500 shrink-0 mt-0.5"></i>
+              <span><strong>Flexible Billing:</strong> Fuel inclusive (Wet Lease) or exclusive (Dry Lease).</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Compliance & Copyright -->
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div>
+          © 2026 SiteRentals Technologies Pvt. Ltd. All rights reserved. GST Registered • ISO 9001:2015 Partner Fleet Network.
+        </div>
+        <div class="flex items-center space-x-4 text-slate-400">
+          <span>Terms of Rental</span>
+          <span>•</span>
+          <span>Privacy Policy</span>
+          <span>•</span>
+          <span>Safety Standard Protocol</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       8. FLOATING WHATSAPP BUTTON (NO NUMBER SHOWN)
+       ======================================================================== -->
+  <a href="https://wa.me/917011775286?text=Hello%20SiteRentals,%20I%20need%20a%20quotation%20for%20heavy%20machinery." target="_blank" class="fixed bottom-6 right-6 z-40 flex items-center space-x-2 px-4 py-3 rounded-full bg-emerald-600 text-white font-extrabold text-xs sm:text-sm shadow-2xl hover:bg-emerald-700 hover:scale-105 transition-all">
+    <i data-lucide="message-circle" class="w-5 h-5"></i>
+    <span>WhatsApp</span>
+  </a>
+
+  <!-- ========================================================================
+       9. SUCCESS MODAL WITH OFFICIAL TICKET PASS & PDF DOWNLOAD
+       ======================================================================== -->
+  <div id="success-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="bg-white border border-slate-200 rounded-3xl max-w-xl w-full p-4 sm:p-7 shadow-2xl relative my-auto">
+      
+      <!-- Top Success Status Banner -->
+      <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+            <i data-lucide="check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-black text-slate-900 uppercase tracking-tight">
+              Quotation Ticket Confirmed!
+            </h3>
+            <p class="text-[11px] text-slate-500">Your pass is active in our regional dispatch queue.</p>
+          </div>
+        </div>
+
+        <button id="close-modal-btn" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Dynamic Ticket Container (Rendered by renderTicketCard) -->
+      <div id="modal-ticket-container" class="mb-5 overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+        <!-- Rendered by JavaScript -->
+      </div>
+
+      <!-- Ticket Action Controls (Download PDF, WhatsApp Connect, Done) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+        <button id="modal-download-pdf-btn" class="py-3 px-4 rounded-xl text-xs font-black text-white bg-red-600 hover:bg-red-700 flex items-center justify-center space-x-2 shadow-sm transition-all cursor-pointer">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Download PDF</span>
+        </button>
+
+        <a id="modal-whatsapp-btn" href="https://wa.me/917011775286" target="_blank" class="py-3 px-4 rounded-xl text-xs font-black text-white bg-emerald-600 hover:bg-emerald-700 flex items-center justify-center space-x-2 shadow-sm transition-all">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>WhatsApp Us</span>
+        </a>
+
+        <button onclick="document.getElementById('success-modal').classList.remove('active')" class="py-3 px-4 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 text-center transition-colors">
+          Done
+        </button>
+      </div>
+
+      <p class="text-center text-[10px] text-slate-400 mt-3 font-medium">
+        SiteRentals automated dispatch desk. An official copy of this ticket has been transmitted to your email.
+      </p>
+    </div>
+  </div>
+
+  <!-- Lucide Icon Initialization -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- Main JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>

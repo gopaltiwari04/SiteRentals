@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="600" height="500" fill="none">
+  <defs>
+    <linearGradient id="heroAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FEF08A" />
+      <stop offset="25%" stop-color="#FBBF24" />
+      <stop offset="65%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#B45309" />
+    </linearGradient>
+    <linearGradient id="heroDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+    <linearGradient id="heroSteel" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+    <radialGradient id="heroGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.35" />
+      <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <pattern id="heroHazard" width="16" height="16" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="16" stroke="#0F172A" stroke-width="8" />
+      <line x1="8" y1="0" x2="8" y2="16" stroke="#F59E0B" stroke-width="8" />
+    </pattern>
+    <filter id="heroDropGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Ambient Golden Aura -->
+  <circle cx="300" cy="200" r="210" fill="url(#heroGlow)" />
+
+  <!-- Outer Hexagonal Heavy Shield -->
+  <polygon points="300,30 460,122 460,308 300,400 140,308 140,122" fill="url(#heroDark)" stroke="url(#heroAmber)" stroke-width="8" stroke-linejoin="round" filter="url(#heroDropGlow)" />
+  
+  <!-- Outer Bolt Rivets on Corners -->
+  <circle cx="300" cy="46" r="4" fill="#94A3B8" stroke="#1E293B" stroke-width="2" />
+  <circle cx="446" cy="130" r="4" fill="#94A3B8" stroke="#1E293B" stroke-width="2" />
+  <circle cx="446" cy="300" r="4" fill="#94A3B8" stroke="#1E293B" stroke-width="2" />
+  <circle cx="300" cy="384" r="4" fill="#94A3B8" stroke="#1E293B" stroke-width="2" />
+  <circle cx="154" cy="300" r="4" fill="#94A3B8" stroke="#1E293B" stroke-width="2" />
+  <circle cx="154" cy="130" r="4" fill="#94A3B8" stroke="#1E293B" stroke-width="2" />
+
+  <!-- Technical Blueprint Inner Inset -->
+  <polygon points="300,54 436,134 436,296 300,376 164,296 164,134" fill="none" stroke="#334155" stroke-width="2" stroke-dasharray="8,6" />
+
+  <!-- Central Dynamic Heavy Machinery Silhouette -->
+  <g transform="translate(130, 70) scale(1.65)">
+    <!-- Base Turret / Track Plate -->
+    <path d="M 30 115 L 174 115 L 164 128 L 40 128 Z" fill="url(#heroAmber)" />
+    <!-- Track Rollers -->
+    <circle cx="56" cy="122" r="3.5" fill="#0F172A" />
+    <circle cx="80" cy="122" r="3.5" fill="#0F172A" />
+    <circle cx="104" cy="122" r="3.5" fill="#0F172A" />
+    <circle cx="128" cy="122" r="3.5" fill="#0F172A" />
+    <circle cx="150" cy="122" r="3.5" fill="#0F172A" />
+
+    <!-- Main Pivot Bushing -->
+    <circle cx="55" cy="106" r="10" fill="#0F172A" stroke="url(#heroAmber)" stroke-width="4" />
+    <circle cx="55" cy="106" r="4" fill="#FBBF24" />
+    
+    <!-- Primary Heavy Boom Arm -->
+    <path d="M 52 102 L 95 36 L 114 42 L 72 108 Z" fill="url(#heroAmber)" />
+    <!-- Hydraulic Ram Cylinder -->
+    <line x1="68" y1="92" x2="98" y2="52" stroke="url(#heroSteel)" stroke-width="5" stroke-linecap="round" />
+    <circle cx="98" cy="52" r="4" fill="#0F172A" stroke="#FBBF24" stroke-width="2" />
+
+    <!-- Articulated Dipper Stick Arm -->
+    <path d="M 94 37 L 152 20 L 158 34 L 110 50 Z" fill="#FDE047" />
+    
+    <!-- Heavy Excavator Bucket / Claws -->
+    <path d="M 152 24 L 176 38 L 160 62 L 142 55 L 148 41 Z" fill="url(#heroAmber)" stroke="#B45309" stroke-width="2" />
+    <!-- Tooth Accents -->
+    <polygon points="176,38 184,45 178,49 173,44" fill="#FFFFFF" />
+    <polygon points="170,50 178,57 172,60 167,54" fill="#FFFFFF" />
+    <polygon points="163,59 170,66 163,68 159,62" fill="#FFFFFF" />
+
+    <!-- Rigging Cable & Steel Shackle -->
+    <path d="M 160 62 Q 148 85 132 98" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" stroke-dasharray="4,4" />
+  </g>
+
+  <!-- Industrial Caution Hazard Plate at Bottom -->
+  <rect x="220" y="352" width="160" height="12" fill="url(#heroHazard)" rx="3" stroke="#F59E0B" stroke-width="1.5" />
+
+  <!-- Brand Typography in Hero Emblem -->
+  <!-- "SITE" in Bold Industrial White -->
+  <text x="145" y="445" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="52" font-weight="900" fill="#FFFFFF" letter-spacing="3">SITE</text>
+  
+  <!-- "RENTAS" in Amber Construction Gold -->
+  <text x="290" y="445" font-family="'Montserrat', 'Arial Black', sans-serif" font-size="52" font-weight="900" fill="url(#heroAmber)" letter-spacing="4">RENTAS</text>
+
+  <!-- Tagline Beneath -->
+  <text x="300" y="482" text-anchor="middle" font-family="'Inter', sans-serif" font-size="13" font-weight="800" fill="#94A3B8" letter-spacing="6">HEAVY EQUIPMENT MARKETPLACE</text>
+</svg>
